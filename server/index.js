@@ -22,12 +22,11 @@ app.use(cors({
 
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
+app.use('/posts', postRoutes);
+
 
 
 
