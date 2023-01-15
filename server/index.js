@@ -15,11 +15,18 @@ const app = express();
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000", "https://artivo-app.onrender.com"],
+  }));
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
-app.use('/', express.static("./client/build"))
+
 
 const CONNECTION_URL = 'mongodb+srv://javascriptmaster:javascriptmaster123@cluster0.abb916h.mongodb.net/?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
