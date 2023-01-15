@@ -1,6 +1,7 @@
 import axios from 'axios';
+import * as actionType from '../constants/actionTypes'
 
-const API = axios.create({ baseURL: 'https://artivo-backend.onrender.com' });
+const API = axios.create({ baseURL: actionType.Base_URL });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
