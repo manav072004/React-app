@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://artivo-backend.onrender.com',
+      target: 'https://artivo-backend.onrender.com/posts',
       changeOrigin: true,
     })
   );
