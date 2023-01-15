@@ -20,7 +20,11 @@ app.use(cors({
   }));
 
 
-
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, "/client/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(_dirname, "../client/build/index.html"))
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
