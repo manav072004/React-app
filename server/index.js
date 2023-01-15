@@ -20,6 +20,12 @@ app.use(cors({
   }));
 
 
+const _dirname = path.resolve();
+app.use(express.static(path.join(_dirname, "/client/build")));
+app.get("*", (req, res) =>
+  res.sendFile(path.join(_dirname, "/client/build/index.html"))
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,11 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
-const _dirname = path.resolve();
-app.use(express.static(path.join(_dirname, "/client/build")));
-app.get("*", (req, res) =>
-  res.sendFile(path.join(_dirname, "/client/build/index.html"))
-);
+
 
 const CONNECTION_URL = 'mongodb+srv://javascriptmaster:javascriptmaster123@cluster0.abb916h.mongodb.net/?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
